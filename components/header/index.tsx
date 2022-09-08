@@ -1,9 +1,7 @@
-import { useRouter } from "next/router"
+import Link from "next/link"
 import Button from "../button"
 
-const Header: React.FC<Props> = (props) => {
-    const router = useRouter()
-
+const Header: React.FC<Props> = () => {
     return (
         <div className="shadow-xl">
             <div className="flex flex-1 items-center bg-indigo-600 justify-between px-4">
@@ -12,7 +10,9 @@ const Header: React.FC<Props> = (props) => {
                         Identify Management
                     </h2>
                 </div>
-                <Button title="Login" onClick={() => router.push("/login")} />
+                <Link href={"/login"}>
+                    <Button title="Login" />
+                </Link>
             </div>
         </div>
     )

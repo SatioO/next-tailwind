@@ -1,18 +1,19 @@
-const Button: React.FC<Props> = (props) => {
+const Button: React.FC<Props> = ({ title, color = "white", onClick }) => {
+    console.log("color", color)
     return (
         <button
-            onClick={props.onClick}
-            className="px-8 py-2 bg-white rounded-sm shadow-2xl"
+            onClick={onClick}
+            className={"px-8 py-2 bg-" + color + " rounded-sm shadow-2xl"}
         >
-            <p className="text-black font-medium">{props.title}</p>
+            <p className="text-black font-medium">{title}</p>
         </button>
     )
 }
 
 type Props = {
-    onClick: () => void
     title: string
-    variant?: string
+    color?: string
+    onClick?: () => void
 }
 
 export default Button
