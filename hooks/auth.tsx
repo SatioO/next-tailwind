@@ -1,11 +1,14 @@
+import { AxiosError, AxiosResponse } from "axios"
 import { useMutation } from "react-query"
+import { login } from "../api/auth"
 import { GRANT_TYPE, SCOPES } from "../constants/auth.constant"
 import {
     ACCESS_TOKEN_KEY,
     REFRESH_TOKEN_KEY,
 } from "../constants/storage.constant"
+import { environment } from "../lib/environment"
+import { getError, ServerError } from "../lib/errors"
 import { UserInput } from "../pages/login/login.type"
-import { login } from "../services/auth"
 
 const useLoginUser = () => {
     return useMutation(
@@ -14,11 +17,11 @@ const useLoginUser = () => {
                 grant_type: GRANT_TYPE,
                 username: data.username,
                 password: data.password,
-                client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+                client_id: environment.client,
                 scope: SCOPES,
             }),
         {
-            onSuccess(response) {
+            onSuccess(response: AxiosResponse) {
                 const tokenResponse = response.data.data
                 localStorage.setItem(
                     ACCESS_TOKEN_KEY,
@@ -29,8 +32,8 @@ const useLoginUser = () => {
                     tokenResponse.refresh_token
                 )
             },
-            onError(error) {
-                console.log(error)
+            onError(error: AxiosError<ServerError>) {
+                console.log(getError(error))
             },
         }
     )

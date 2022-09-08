@@ -1,0 +1,19 @@
+.container {
+    @apply flex justify-center p-4 bg-indigo-700 shadow-lg;
+}
+
+.wrapper {
+    @apply flex-1 flex justify-between;
+}
+
+.logoContainer {
+    @apply flex items-center;
+}
+
+.nav {
+    @apply flex text-lg;
+}
+
+.title {
+    @apply font-bold text-lg text-white;
+}

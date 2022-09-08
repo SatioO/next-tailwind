@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios"
 import { v4 as uuidv4 } from "uuid"
+import { environment } from "./environment"
 
 const fetcher = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_IDP_BASE_URL,
+    baseURL: environment.idp_base_url,
     headers: { GLOBALUUID: uuidv4() },
 })
 

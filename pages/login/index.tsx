@@ -13,7 +13,7 @@ const Login: React.FC<Props> = () => {
     const loginUser = useLoginUser()
 
     React.useEffect(() => {
-        if (loginUser.isSuccess) router.push("/")
+        if (loginUser.isSuccess) router.replace("/")
     }, [loginUser.isSuccess, router])
 
     function onLogin(values: UserInput) {

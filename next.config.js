@@ -4,7 +4,7 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-        domains: ["miro.medium.com"],
+        domains: ["cdn.fs.brandfolder.com"],
     },
 }
 

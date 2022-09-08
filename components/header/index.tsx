@@ -1,18 +1,19 @@
 import Link from "next/link"
-import Button from "../button"
+import Button from "../Button"
+import styles from "./header.module.css"
 
 const Header: React.FC<Props> = () => {
     return (
-        <div className="shadow-xl">
-            <div className="flex flex-1 items-center bg-indigo-600 justify-between px-4">
-                <div className="flex flex-shrink-0 items-center h-16 ">
-                    <h2 className="text-white font-medium text-lg">
-                        Identify Management
-                    </h2>
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                <div className={styles.logoContainer}>
+                    <h4 className={styles.title}>Identify Management System</h4>
                 </div>
-                <Link href={"/login"}>
-                    <Button title="Login" />
-                </Link>
+                <div className={styles.nav}>
+                    <Link href={"/login"}>
+                        <Button title="Login" />
+                    </Link>
+                </div>
             </div>
         </div>
     )

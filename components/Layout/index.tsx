@@ -1,4 +1,4 @@
-import Header from "./header"
+import Header from "../Header"
 
 const Layout: React.FC<Props> = ({ children }) => {
     return (
