@@ -10,11 +10,11 @@ import {
 } from "../constants/storage.constant"
 import { environment } from "../lib/environment"
 import { getError, IErrorResponse } from "../lib/errors"
-import { UserInputType } from "../pages/login/login.types"
+import { IUserInputType } from "../pages/login/login.types"
 
 const useLoginUser = () => {
     return useMutation(
-        (data: UserInputType) =>
+        (data: IUserInputType) =>
             login({
                 grant_type: GRANT_TYPE,
                 username: data.username,

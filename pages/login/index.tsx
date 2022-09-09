@@ -6,7 +6,7 @@ import { ILoginProps, IUserInputType } from "./login.types"
 
 const Login: React.FC<ILoginProps> = () => {
     const router = useRouter()
-    const formik = useFormik({
+    const formik = useFormik<IUserInputType>({
         initialValues: { username: "", password: "" },
         onSubmit: (values: IUserInputType) => onLogin(values),
     })
