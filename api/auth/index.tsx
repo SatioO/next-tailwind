@@ -1,10 +1,9 @@
 import fetcher from "../../lib/axios"
 import { environment } from "../../lib/environment"
-import { PasswordCredentials, UserLoginResponse } from "./auth.type"
+import { IPasswordCredentials, IUserLoginResponse } from "./auth.types"
 
-export const login = (data: PasswordCredentials) => {
-    return fetcher.post<UserLoginResponse>(
+export const login = (data: IPasswordCredentials) =>
+    fetcher.post<IUserLoginResponse>(
         `/v1/realm/${environment.realm}/protocol/oidc/token`,
         data
     )
-}

@@ -1,8 +1,8 @@
-export type UserLoginResponse = {
-    data: TokenResponse
+export interface IUserLoginResponse {
+    data: ITokenResponse
 }
 
-export type PasswordCredentials = {
+export interface IPasswordCredentials {
     grant_type: string
     username: string
     password: string
@@ -10,7 +10,7 @@ export type PasswordCredentials = {
     scope: string
 }
 
-export type TokenResponse = {
+export type ITokenResponse = {
     access_token: string
     expires_in: number
     id_token: string

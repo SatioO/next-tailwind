@@ -2,13 +2,13 @@ import { useFormik } from "formik"
 import { useRouter } from "next/router"
 import React from "react"
 import useLoginUser from "../../hooks/auth"
-import { UserInput } from "./login.type"
+import { ILoginProps, IUserInputType } from "./login.types"
 
-const Login: React.FC<Props> = () => {
+const Login: React.FC<ILoginProps> = () => {
     const router = useRouter()
     const formik = useFormik({
         initialValues: { username: "", password: "" },
-        onSubmit: (values: UserInput) => onLogin(values),
+        onSubmit: (values: IUserInputType) => onLogin(values),
     })
     const loginUser = useLoginUser()
 
@@ -16,7 +16,7 @@ const Login: React.FC<Props> = () => {
         if (loginUser.isSuccess) router.replace("/")
     }, [loginUser.isSuccess, router])
 
-    function onLogin(values: UserInput) {
+    function onLogin(values: IUserInputType) {
         loginUser.mutate(values)
     }
 
@@ -76,7 +76,5 @@ const Login: React.FC<Props> = () => {
         </div>
     )
 }
-
-type Props = {}
 
 export default Login
