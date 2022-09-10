@@ -1,16 +1,51 @@
-import React, { ReactNode } from "react"
-import { AuthContextType, IUserInfo } from "./auth.types"
+import Cookies from "js-cookie"
+import { useRouter } from "next/router"
+import React from "react"
+import { ITokenResponse } from "../../api/auth/auth.types"
+import {
+    ACCESS_TOKEN_KEY,
+    REFRESH_TOKEN_KEY,
+} from "../../constants/storage.constant"
+import { IAuthContextType, IAuthProps } from "./auth.types"
 
-export const AuthContext = React.createContext<AuthContextType | null>(null)
+export const AuthContext = React.createContext<IAuthContextType | null>(null)
 
-export const AuthProvider: React.FC<Props> = ({ children }) => {
-    const [userInfo, setUserInfo] = React.useState<IUserInfo | null>(null)
+export const AuthProvider: React.FC<IAuthProps> = ({ children }) => {
+    const router = useRouter()
+    const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false)
+
+    function login(tokenResponse: ITokenResponse) {
+        Cookies.set(ACCESS_TOKEN_KEY, tokenResponse.access_token, {
+            expires: tokenResponse.expires_in,
+            sameSite: "strict",
+            secure: true,
+        })
+        Cookies.set(REFRESH_TOKEN_KEY, tokenResponse.refresh_token, {
+            expires: tokenResponse.expires_in,
+            sameSite: "strict",
+            secure: true,
+        })
+
+        setIsAuthenticated(true)
+
+        router.replace("/")
+    }
+
+    function logout() {
+        setIsAuthenticated(false)
+    }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!userInfo, userInfo }}>
+        <AuthContext.Provider
+            value={{
+                isAuthenticated,
+                login,
+                logout,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     )
 }
 
-type Props = { children: ReactNode }
+export const useAuth = () => React.useContext(AuthContext) as IAuthContextType

@@ -1,6 +1,6 @@
-export interface IUserInputType {
+export interface IUserInput {
     username: string
     password: string
 }
 
-export interface ILoginProps {}
+export type LoginProps = {}

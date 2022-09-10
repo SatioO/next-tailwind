@@ -1,18 +1,16 @@
 import { AxiosError, AxiosResponse } from "axios"
-import Cookies from "js-cookie"
 import { useMutation } from "react-query"
 import { login } from "../api/auth"
 import { IUserLoginResponse } from "../api/auth/auth.types"
 import { GRANT_TYPE, SCOPES } from "../constants/auth.constant"
-import {
-    ACCESS_TOKEN_KEY,
-    REFRESH_TOKEN_KEY,
-} from "../constants/storage.constant"
+import { useAuth } from "../contexts/auth"
 import { environment } from "../lib/environment"
 import { getError, IErrorResponse } from "../lib/errors"
-import { IUserInputType } from "../pages/login/login.types"
+import { IUserInputType } from "../pages/Login/login.types"
 
 const useLoginUser = () => {
+    const auth = useAuth()
+
     return useMutation(
         (data: IUserInputType) =>
             login({
@@ -24,17 +22,7 @@ const useLoginUser = () => {
             }),
         {
             onSuccess(response: AxiosResponse<IUserLoginResponse>) {
-                const tokenResponse = response.data.data
-                Cookies.set(ACCESS_TOKEN_KEY, tokenResponse.access_token, {
-                    expires: tokenResponse.expires_in,
-                    secure: true,
-                    sameSite: "strict",
-                })
-                Cookies.set(REFRESH_TOKEN_KEY, tokenResponse.refresh_token, {
-                    expires: tokenResponse.expires_in,
-                    secure: true,
-                    sameSite: "strict",
-                })
+                auth.login(response.data.data)
             },
             onError(error: AxiosError<IErrorResponse>) {
                 console.log(getError(error))

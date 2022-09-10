@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import Header from "../Header"
 
 const Layout: React.FC<Props> = ({ children }) => {
@@ -9,6 +10,6 @@ const Layout: React.FC<Props> = ({ children }) => {
     )
 }
 
-type Props = { children: JSX.Element }
+type Props = { children: ReactNode }
 
 export default Layout

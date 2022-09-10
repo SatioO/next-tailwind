@@ -1,23 +1,23 @@
 import { useFormik } from "formik"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/router"
 import React from "react"
-import useLoginUser from "../../hooks/auth"
-import { ILoginProps, IUserInputType } from "./login.types"
+import { IUserInput, LoginProps } from "./login.types"
 
-const Login: React.FC<ILoginProps> = () => {
+const Login: React.FC<LoginProps> = () => {
     const router = useRouter()
-    const formik = useFormik<IUserInputType>({
+    const formik = useFormik<IUserInput>({
         initialValues: { username: "", password: "" },
-        onSubmit: (values: IUserInputType) => onLogin(values),
+        onSubmit: (values: IUserInput) => onLogin(values),
     })
-    const loginUser = useLoginUser()
 
-    React.useEffect(() => {
-        if (loginUser.isSuccess) router.replace("/")
-    }, [loginUser.isSuccess, router])
+    async function onLogin(values: IUserInput) {
+        const response = await signIn("credentials", {
+            ...values,
+            redirect: false,
+        })
 
-    function onLogin(values: IUserInputType) {
-        loginUser.mutate(values)
+        if (response?.ok) router.push("/")
     }
 
     return (
@@ -68,7 +68,7 @@ const Login: React.FC<ILoginProps> = () => {
                             className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             type="submit"
                         >
-                            {loginUser.isLoading ? "Submitting" : "Login"}
+                            Login
                         </button>
                     </div>
                 </form>

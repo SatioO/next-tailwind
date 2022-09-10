@@ -1,8 +1,13 @@
 import Link from "next/link"
+import { useAuth } from "../../contexts/auth"
 import Button from "../Button"
 import styles from "./header.module.css"
 
-const Header: React.FC<Props> = () => {
+type HeaderProps = {}
+
+const Header: React.FC<HeaderProps> = () => {
+    const auth = useAuth()
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -18,7 +23,5 @@ const Header: React.FC<Props> = () => {
         </div>
     )
 }
-
-type Props = {}
 
 export default Header
