@@ -1,9 +1,11 @@
-import type { ReactElement } from "react"
+import type { ReactElement, ReactNode } from "react"
 import Layout from "../components/Layout"
 import { NextPageWithLayout } from "./_app"
 
-const Home: NextPageWithLayout = () => {
-    return <h1 className="text-3xl font-bold"></h1>
+type HomeProps = { children: ReactNode }
+
+const Home: NextPageWithLayout<HomeProps> = () => {
+    return <h1 className="text-3xl font-bold">Home</h1>
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {

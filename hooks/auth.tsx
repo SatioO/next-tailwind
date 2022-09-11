@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios"
 import { useMutation } from "react-query"
 import { login } from "../api/auth"
-import { IUserLoginResponse } from "../api/auth/auth.types"
+import { ITokenResponse } from "../api/auth/auth.types"
 import { GRANT_TYPE, SCOPES } from "../constants/auth.constant"
 import { useAuth } from "../contexts/auth"
 import { environment } from "../lib/environment"
@@ -21,7 +21,7 @@ const useLoginUser = () => {
                 scope: SCOPES,
             }),
         {
-            onSuccess(response: AxiosResponse<IUserLoginResponse>) {
+            onSuccess(response: AxiosResponse<ITokenResponse>) {
                 auth.login(response.data.data)
             },
             onError(error: AxiosError<IErrorResponse>) {

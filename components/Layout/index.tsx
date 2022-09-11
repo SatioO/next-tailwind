@@ -1,7 +1,7 @@
-import { ReactNode } from "react"
 import Header from "../Header"
+import { LayoutProps } from "./layout.types"
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className="flex-1">
             <Header />
@@ -9,7 +9,5 @@ const Layout: React.FC<Props> = ({ children }) => {
         </div>
     )
 }
-
-type Props = { children: ReactNode }
 
 export default Layout

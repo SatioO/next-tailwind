@@ -1,13 +1,8 @@
-import { useSession } from "next-auth/react"
 import React from "react"
 import fetcher from "../../lib/axios"
-
-type PostsProps = {}
+import { PostsProps } from "./posts.types"
 
 const Posts: React.FC<PostsProps> = () => {
-    const session = useSession()
-    console.log({ session })
-
     const [random, setRandom] = React.useState<number>()
 
     async function fetchData() {

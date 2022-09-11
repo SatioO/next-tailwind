@@ -25,12 +25,12 @@ export default function MyApp({
     // Use the layout defined at the page level, if available
     const getLayout = Component.getLayout || ((page) => page)
 
-    return getLayout(
-        <QueryClientProvider client={queryClient}>
-            <SessionProvider session={session}>
-                <Component {...pageProps} />
+    return (
+        <SessionProvider session={session}>
+            <QueryClientProvider client={queryClient}>
+                {getLayout(<Component {...pageProps} />)}
                 <ReactQueryDevtools initialIsOpen={false} />
-            </SessionProvider>
-        </QueryClientProvider>
+            </QueryClientProvider>
+        </SessionProvider>
     )
 }

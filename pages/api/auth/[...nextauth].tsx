@@ -26,8 +26,9 @@ export default NextAuth({
                         scope: SCOPES,
                     })
 
-                    return response.data.data
+                    return { ...response.data.data }
                 } catch (error) {
+                    console.log(error)
                     throw new Error("invalid credentials")
                 }
             },
@@ -45,8 +46,8 @@ export default NextAuth({
                 }
             }
 
-            const shouldRefreshTime = Number(token.expires_in) < Date.now()
-            console.log({ shouldRefreshTime })
+            const hasAccessTokenExpired = Number(token.expires_in) < Date.now()
+            console.log({ hasAccessTokenExpired })
 
             return token
         },

@@ -1,7 +1,7 @@
 import React from "react"
-import { ITokenResponse } from "../../api/auth/auth.types"
+import { ITokenPayload } from "../../api/auth/auth.types"
 
-export interface IAuthProps {
+export type AuthProps = {
     children: React.ReactNode
 }
 
@@ -16,5 +16,5 @@ export interface IUserInfo {
     lastName: string
 }
 
-type Login = (tokenResponse: ITokenResponse) => void
+type Login = (tokenResponse: ITokenPayload) => void
 type Logout = () => void

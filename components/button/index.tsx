@@ -1,16 +1,13 @@
 import { forwardRef, PropsWithChildren } from "react"
+import { ButtonProps } from "./button.types"
 
-const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
+const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     (props, ref) => {
         return (
             <button
                 ref={ref}
                 onClick={props.onClick}
-                className={
-                    "px-8 py-2 bg-" +
-                    (props.color || "white") +
-                    " rounded-sm shadow-2xl bg-"
-                }
+                className={"px-8 py-2 bg-white rounded-sm shadow-2xl"}
             >
                 <p className="text-black font-medium">{props.title}</p>
             </button>
@@ -18,12 +15,6 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
     }
 )
 
-type Props = {
-    title: string
-    color?: string
-    onClick?: () => void
-}
-
-Button.displayName = "FancyButton"
+Button.displayName = "Button"
 
 export default Button
