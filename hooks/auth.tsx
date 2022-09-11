@@ -1,10 +1,10 @@
 import { login } from "@api/auth"
 import { ITokenResponse } from "@api/auth/auth.types"
+import { IUserInput } from "@components/feature/LoginForm/loginform.types"
 import { GRANT_TYPE, SCOPES } from "@constants/auth.constant"
 import { useAuth } from "@contexts/auth"
 import { environment } from "@lib/environment"
 import { getError, IErrorResponse } from "@lib/errors"
-import { IUserInput } from "@pages/login/login.types"
 import { AxiosError, AxiosResponse } from "axios"
 import { useMutation } from "react-query"
 
