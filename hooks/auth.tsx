@@ -6,13 +6,13 @@ import { GRANT_TYPE, SCOPES } from "../constants/auth.constant"
 import { useAuth } from "../contexts/auth"
 import { environment } from "../lib/environment"
 import { getError, IErrorResponse } from "../lib/errors"
-import { IUserInputType } from "../pages/Login/login.types"
+import { IUserInput } from "../pages/login/login.types"
 
 const useLoginUser = () => {
     const auth = useAuth()
 
     return useMutation(
-        (data: IUserInputType) =>
+        (data: IUserInput) =>
             login({
                 grant_type: GRANT_TYPE,
                 username: data.username,
