@@ -1,4 +1,4 @@
-import Layout from "@components/Layout"
+import Layout from "@components/ui/Layout"
 import type { ReactElement, ReactNode } from "react"
 import { NextPageWithLayout } from "./_app"
 
