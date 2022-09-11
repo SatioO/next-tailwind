@@ -1,21 +1,18 @@
 import LoginForm from "@components/feature/LoginForm"
 import { IUserInput } from "@components/feature/LoginForm/loginform.types"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/router"
 import React from "react"
 import styles from "./login.module.css"
 import { LoginProps } from "./login.types"
 
 const Login: React.FC<LoginProps> = () => {
-    const router = useRouter()
-
     async function onLogin(values: IUserInput) {
-        const response = await signIn("credentials", {
+        const url = new URL(location.href)
+        const callbackUrl = url.searchParams.get("callbackUrl") || "/"
+        await signIn("credentials", {
             ...values,
-            redirect: false,
+            callbackUrl,
         })
-
-        if (response?.ok) router.replace("/")
     }
 
     return (
