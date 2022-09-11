@@ -1,10 +1,9 @@
+import { queryConfig } from "@lib/react-query"
 import { NextPage } from "next"
 import { AppProps } from "next/app"
 import React, { ReactElement, ReactNode } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
-import { queryConfig } from "../lib/react-query"
-
 import { SessionProvider } from "next-auth/react"
 import "../styles/globals.css"
 

@@ -1,5 +1,5 @@
+import fetcher from "@lib/axios"
 import React from "react"
-import fetcher from "../../lib/axios"
 import { PostsProps } from "./posts.types"
 
 const Posts: React.FC<PostsProps> = () => {

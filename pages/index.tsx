@@ -1,5 +1,5 @@
+import Layout from "@components/Layout"
 import type { ReactElement, ReactNode } from "react"
-import Layout from "../components/Layout"
 import { NextPageWithLayout } from "./_app"
 
 type HomeProps = { children: ReactNode }

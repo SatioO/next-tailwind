@@ -1,6 +1,6 @@
+import fetcher from "@lib/axios"
+import { environment } from "@lib/environment"
 import { AxiosResponse } from "axios"
-import fetcher from "../../lib/axios"
-import { environment } from "../../lib/environment"
 import { ITokenRequest, ITokenResponse } from "./auth.types"
 
 export const login = (

@@ -1,11 +1,6 @@
-import Cookies from "js-cookie"
+import { ITokenPayload } from "@api/auth/auth.types"
 import { useRouter } from "next/router"
 import React from "react"
-import { ITokenPayload } from "../../api/auth/auth.types"
-import {
-    ACCESS_TOKEN_KEY,
-    REFRESH_TOKEN_KEY,
-} from "../../constants/storage.constant"
 import { AuthProps, IAuthContextType } from "./auth.types"
 
 export const AuthContext = React.createContext<IAuthContextType | null>(null)
@@ -15,19 +10,7 @@ export const AuthProvider: React.FC<AuthProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false)
 
     function login(tokenResponse: ITokenPayload) {
-        Cookies.set(ACCESS_TOKEN_KEY, tokenResponse.access_token, {
-            expires: tokenResponse.expires_in,
-            sameSite: "strict",
-            secure: true,
-        })
-        Cookies.set(REFRESH_TOKEN_KEY, tokenResponse.refresh_token, {
-            expires: tokenResponse.expires_in,
-            sameSite: "strict",
-            secure: true,
-        })
-
         setIsAuthenticated(true)
-
         router.replace("/")
     }
 

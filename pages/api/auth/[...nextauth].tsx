@@ -1,8 +1,8 @@
+import { login } from "@api/auth"
+import { GRANT_TYPE, SCOPES } from "@constants/auth.constant"
+import { environment } from "@lib/environment"
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { login } from "../../../api/auth"
-import { GRANT_TYPE, SCOPES } from "../../../constants/auth.constant"
-import { environment } from "../../../lib/environment"
 
 export default NextAuth({
     session: {

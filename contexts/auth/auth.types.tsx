@@ -1,5 +1,5 @@
+import { ITokenPayload } from "@api/auth/auth.types"
 import React from "react"
-import { ITokenPayload } from "../../api/auth/auth.types"
 
 export type AuthProps = {
     children: React.ReactNode
