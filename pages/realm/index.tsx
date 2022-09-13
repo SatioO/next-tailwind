@@ -7,37 +7,25 @@ import { RealmProps } from "./realm.types"
 const columns = [
     { key: "id", title: "ID" },
     { key: "name", title: "Name" },
-    { key: "display_name", title: "display name" },
-    { key: "logo", title: "logo" },
-    { key: "support_email", title: "support email" },
-    { key: "support_url", title: "support url" },
-    {
-        key: "edit_username_allowed",
-        title: "edit username allowed",
-    },
-    {
-        key: "reg_email_as_username",
-        title: "register email as username",
-    },
-    {
-        key: "duplicate_emails_allowed",
-        title: "duplicate emails allowed",
-    },
-    {
-        key: "duplicate_phone_numbers_allowed",
-        title: "duplicate phone allowed",
-    },
+    { key: "display_name", title: "Display Name" },
+    { key: "logo", title: "Logo" },
+    { key: "support_email", title: "Support Email" },
+    { key: "support_url", title: "Support URL" },
 ]
 
 const RealmPage: NextPageWithLayout<RealmProps> = () => {
     const realms = useRealm()
 
     return (
-        <>
-            {realms.isSuccess && (
-                <Table columns={columns} data={realms.data?.items} />
-            )}
-        </>
+        <div className="flex justify-center">
+            <div className="w-9/12">
+                <div className="p-4">
+                    <h1 className="text-xl font-bold">Realm</h1>
+                    <p>A list of realms created in an IDP application</p>
+                </div>
+                <Table columns={columns} data={realms.data?.items ?? []} />
+            </div>
+        </div>
     )
 }
 

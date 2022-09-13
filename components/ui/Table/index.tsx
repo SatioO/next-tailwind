@@ -2,37 +2,45 @@ import { TableProps } from "./table.types"
 
 function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
     return (
-        <table className="w-full  text-sm text-left text-gray-500 shadow-xl">
-            <thead className="text-xs text-white uppercase bg-gray-500">
-                <tr>
-                    {columns.map((column) => {
-                        return (
-                            <th
-                                key={column.key}
-                                scope="col"
-                                className="py-5 px-6"
-                            >
-                                {column.title}
-                            </th>
-                        )
-                    })}
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item, rowIndex) => (
-                    <tr className="border-b bg-white" key={rowIndex}>
-                        {columns.map((column, colIndex) => (
-                            <td
-                                className="py-5 px-6"
-                                key={`${rowIndex}:${colIndex}`}
-                            >
-                                {String(item[column.key])}
-                            </td>
-                        ))}
+        <div className="overflow-x-auto p-3">
+            <table className="table-fixed w-full text-sm text-gray-500 shadow-lg">
+                <thead className="text-slate-800 font-bold bg-white border-b-2">
+                    <tr>
+                        {columns.map((column) => {
+                            return (
+                                <th
+                                    key={column.key}
+                                    className="py-3 px-6 font-semibold text-left"
+                                >
+                                    {column.title}
+                                </th>
+                            )
+                        })}
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody className="text-sm divide-y divide-gray-100">
+                    {data.map((item, rowIndex) => (
+                        <tr
+                            className={
+                                rowIndex % 2 !== 0
+                                    ? "bg-gray-50 hover:bg-stone-100"
+                                    : "bg-white hover:bg-stone-100"
+                            }
+                            key={rowIndex}
+                        >
+                            {columns.map((column, colIndex) => (
+                                <td
+                                    className="py-3 px-6 cursor-pointer"
+                                    key={`${rowIndex}:${colIndex}`}
+                                >
+                                    {String(item[column.key])}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
