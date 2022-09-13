@@ -5,8 +5,8 @@ export type TableProps<T> = {
 }
 
 export type TableColumn = {
-    title: string
-    key: string
+    name: string
+    selector: (row: any) => any
 }
 
 export type PaginationProps = {}

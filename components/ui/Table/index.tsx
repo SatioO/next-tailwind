@@ -9,17 +9,17 @@ function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
                         {columns.map((column) => {
                             return (
                                 <th
-                                    key={column.key}
+                                    key={column.name}
                                     className="py-3 font-semibold px-6 text-left"
                                 >
-                                    {column.title}
+                                    {column.name}
                                 </th>
                             )
                         })}
                     </tr>
                 </thead>
                 <tbody className="text-sm divide-y divide-gray-100">
-                    {data.map((item, rowIndex) => (
+                    {data.map((row, rowIndex) => (
                         <tr
                             className={
                                 rowIndex % 2 !== 0
@@ -28,14 +28,16 @@ function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
                             }
                             key={rowIndex}
                         >
-                            {columns.map((column, colIndex) => (
-                                <td
-                                    className="py-3 px-6 cursor-pointer"
-                                    key={`${rowIndex}:${colIndex}`}
-                                >
-                                    {String(item[column.key])}
-                                </td>
-                            ))}
+                            {columns.map((column, colIndex) => {
+                                return (
+                                    <td
+                                        className="py-3 px-6 cursor-pointer"
+                                        key={`${rowIndex}:${colIndex}`}
+                                    >
+                                        {column.selector(row)}
+                                    </td>
+                                )
+                            })}
                         </tr>
                     ))}
                 </tbody>
