@@ -2,8 +2,8 @@ import { TableProps } from "./table.types"
 
 function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
     return (
-        <div className="overflow-x-auto p-3">
-            <table className="table-fixed w-full text-sm text-gray-500 shadow-lg">
+        <div className="overflow-x-auto p-3 rounded-sm">
+            <table className="table-fixed w-full text-sm text-gray-500 shadow-lg ">
                 <thead className="text-slate-800 font-bold bg-white border-b-2">
                     <tr>
                         {columns.map((column) => {

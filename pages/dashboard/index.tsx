@@ -1,28 +1,37 @@
+import Layout from "@components/ui/Layout"
 import Table from "@components/ui/Table"
-import useClient from "@hooks/client/useClient"
-import React from "react"
+import useRealm from "@hooks/realm/useRealm"
+import { NextPageWithLayout } from "@pages/_app"
+import { ReactElement } from "react"
 import { DashboardProps } from "./dashboard.types"
 
-const DashboardPage: React.FC<DashboardProps> = () => {
-    const clients = useClient()
+const columns = [
+    { key: "id", title: "ID" },
+    { key: "name", title: "Name" },
+    { key: "display_name", title: "Display Name" },
+    { key: "logo", title: "Logo" },
+    { key: "support_email", title: "Support Email" },
+    { key: "support_url", title: "Support URL" },
+]
+
+const DashboardPage: NextPageWithLayout<DashboardProps> = () => {
+    const realms = useRealm()
 
     return (
-        <div className="flex justify-center p-4">
-            {clients.isSuccess && (
-                <Table
-                    columns={[
-                        { key: "id", title: "ID" },
-                        { key: "client_id", title: "Client ID" },
-                        { key: "name", title: "Name" },
-                        { key: "realm", title: "Realm" },
-                        { key: "protocol", title: "Protocol" },
-                        { key: "public_client", title: "Public Client" },
-                    ]}
-                    data={clients.data.items}
-                />
-            )}
+        <div className="flex justify-center">
+            <div className="w-9/12">
+                <div className="p-4">
+                    <h1 className="text-xl font-bold">Realm</h1>
+                    <p>A list of realms created in an IDP application</p>
+                </div>
+                <Table columns={columns} data={realms.data?.items ?? []} />
+            </div>
         </div>
     )
+}
+
+DashboardPage.getLayout = function getLayout(page: ReactElement) {
+    return <Layout>{page}</Layout>
 }
 
 export default DashboardPage

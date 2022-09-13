@@ -8,7 +8,7 @@ import { LoginProps } from "./login.types"
 const LoginPage: React.FC<LoginProps> = () => {
     async function onLogin(values: IUserInput) {
         const url = new URL(location.href)
-        const callbackUrl = url.searchParams.get("callbackUrl") || "/"
+        const callbackUrl = url.searchParams.get("callbackUrl") || "/dashboard"
 
         await signIn("credentials", {
             ...values,
