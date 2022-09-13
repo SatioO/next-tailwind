@@ -4,14 +4,13 @@ import { v4 as uuidv4 } from "uuid"
 import { environment } from "./environment"
 
 const axiosClient = axios.create({
-    baseURL: environment.idp_base_url,
+    baseURL: environment.base_url,
     headers: {
         GLOBALUUID: uuidv4(),
         Accept: "application/json",
         "Content-Type": "application/json",
     },
     timeout: 5000,
-    withCredentials: true,
 })
 
 axiosClient.interceptors.request.use(
@@ -21,7 +20,9 @@ axiosClient.interceptors.request.use(
         if (config.headers) {
             config.headers["REQUESTUUID"] = uuidv4()
             if (session?.access_token)
-                config.headers["Authorization"] = session.access_token as string
+                config.headers[
+                    "Authorization"
+                ] = `Bearer ${session.access_token}`
         }
 
         return config
@@ -29,4 +30,4 @@ axiosClient.interceptors.request.use(
     (err) => Promise.reject(err)
 )
 
-export default axiosClient
+export { axiosClient }

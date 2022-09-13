@@ -5,10 +5,11 @@ import React from "react"
 import styles from "./login.module.css"
 import { LoginProps } from "./login.types"
 
-const Login: React.FC<LoginProps> = () => {
+const LoginPage: React.FC<LoginProps> = () => {
     async function onLogin(values: IUserInput) {
         const url = new URL(location.href)
         const callbackUrl = url.searchParams.get("callbackUrl") || "/"
+
         await signIn("credentials", {
             ...values,
             callbackUrl,
@@ -27,4 +28,4 @@ const Login: React.FC<LoginProps> = () => {
     )
 }
 
-export default Login
+export default LoginPage

@@ -1,4 +1,4 @@
-import { login } from "@api/auth"
+import { authenticate } from "@api/auth"
 import { GRANT_TYPE, SCOPES } from "@constants/auth.constant"
 import { environment } from "@lib/environment"
 import NextAuth from "next-auth"
@@ -18,7 +18,7 @@ export default NextAuth({
                 }
 
                 try {
-                    const response = await login({
+                    const response = await authenticate({
                         grant_type: GRANT_TYPE,
                         username,
                         password,

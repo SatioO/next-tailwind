@@ -1,4 +1,4 @@
-import { login } from "@api/auth"
+import { authenticate } from "@api/auth"
 import { ITokenResponse } from "@api/auth/auth.types"
 import { IUserInput } from "@components/feature/LoginForm/loginform.types"
 import { GRANT_TYPE, SCOPES } from "@constants/auth.constant"
@@ -13,7 +13,7 @@ const useLoginUser = () => {
 
     return useMutation(
         (data: IUserInput) =>
-            login({
+            authenticate({
                 grant_type: GRANT_TYPE,
                 username: data.username,
                 password: data.password,
