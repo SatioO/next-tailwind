@@ -1,9 +1,14 @@
 import { TableProps } from "./table.types"
 
-function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
+function Table<T extends any[] | []>({
+    data,
+    columns,
+    progress,
+    onRowClick,
+}: TableProps<T>) {
     return (
-        <div className="overflow-x-auto p-3 rounded-sm">
-            <table className="table-fixed w-full text-sm text-gray-500 shadow-lg">
+        <div className="overflow-x-auto rounded-sm bg-white shadow-lg">
+            <table className="table-fixed w-full text-sm text-gray-500">
                 <thead className="text-slate-800 font-bold bg-white border-b-2">
                     <tr>
                         {columns.map((column) => {
@@ -27,6 +32,7 @@ function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
                                     : "bg-white hover:bg-stone-100"
                             }
                             key={rowIndex}
+                            onClick={() => onRowClick(row)}
                         >
                             {columns.map((column, colIndex) => {
                                 return (
@@ -42,8 +48,17 @@ function Table<T extends any[] | []>({ data, columns }: TableProps<T>) {
                     ))}
                 </tbody>
             </table>
+            {progress && (
+                <div className="flex justify-center text-gray-500 p-4 text-sm">
+                    loading...
+                </div>
+            )}
         </div>
     )
+}
+
+Table.defaultProps = {
+    onRowClick: () => {},
 }
 
 export default Table
