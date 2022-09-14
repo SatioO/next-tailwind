@@ -57,8 +57,8 @@ function Table<T extends any[] | []>({
     )
 }
 
-Table.defaultProps = {
-    onRowClick: () => {},
+Table.defaultProps= {
+    onRowClick: () => {}
 }
 
 export default Table

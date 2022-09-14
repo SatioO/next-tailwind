@@ -6,7 +6,7 @@ export type TableProps<T> = {
     progress?: boolean
     progressComponent?: ReactNode
     pagination?: PaginationProps
-    onRowClick: (row: T) => void
+    onRowClick: (row: any) => void
 }
 
 export type TableColumn = {
@@ -15,3 +15,14 @@ export type TableColumn = {
 }
 
 export type PaginationProps = {}
+
+interface Employee {
+    id: number
+    name: string
+}
+
+function searchEmployeeBasedOnName(searchString: string, employees: Employee[]):Employee[] {
+    return employees.filter(employee => {
+      employee.name.toLowerCase().indexOf(searchString) > -1;
+    });
+  }

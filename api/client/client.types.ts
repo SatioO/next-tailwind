@@ -7,4 +7,6 @@ export interface IClientPayload {
     name: string
     client_id: string
     realm: string
+    public_client: boolean
+    enabled: boolean
 }

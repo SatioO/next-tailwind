@@ -1,32 +1,33 @@
 import { IRealmPayload } from "@api/realm/realm.types"
 import Layout from "@components/ui/Layout"
 import Table from "@components/ui/Table"
-import useRealm from "@hooks/realm/useRealm"
+import useClientsByRealm from "@hooks/client/useClientsByRealm"
 import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
+import { ClientProps } from "./client.types"
 import { columns } from "./columns"
-import { DashboardProps } from "./dashboard.types"
 
-const DashboardPage: NextPageWithLayout<DashboardProps> = () => {
-    const realms = useRealm()
+const ClientPage: NextPageWithLayout<ClientProps> = () => {
     const router = useRouter()
+    const {
+        query: { realm },
+    } = router
+    const client = useClientsByRealm(realm as string)
 
-    function onRowClick(row: IRealmPayload) {
-        router.push({ pathname: "/client", query: { realm: row.name } })
-    }
+    function onRowClick(row: IRealmPayload) {}
 
     return (
         <div className="flex justify-center">
             <div className="w-9/12">
                 <div className="p-4">
-                    <h1 className="text-xl font-bold">Realms</h1>
-                    <p>A list of realms created in an IDP application</p>
+                    <h1 className="text-xl font-bold">Clients</h1>
+                    <p>A list of clients created under {realm} realm</p>
                 </div>
                 <Table
                     columns={columns}
-                    data={realms.data?.items ?? []}
-                    progress={realms.isLoading}
+                    data={client.data ?? []}
+                    progress={client.isLoading}
                     onRowClick={onRowClick}
                 />
             </div>
@@ -34,8 +35,8 @@ const DashboardPage: NextPageWithLayout<DashboardProps> = () => {
     )
 }
 
-DashboardPage.getLayout = function getLayout(page: ReactElement) {
+ClientPage.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
 }
 
-export default DashboardPage
+export default ClientPage

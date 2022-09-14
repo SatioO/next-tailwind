@@ -2,8 +2,14 @@ import { IRealmPayload } from "@api/realm/realm.types"
 
 export const columns = [
     {
+        name: "ID",
+        selector: (row: IRealmPayload) => row.id,
+    },
+    {
         name: "Name",
-        selector: (row: IRealmPayload) => row.name,
+        selector: (row: IRealmPayload) => (
+            <div className="font-medium">{row.name}</div>
+        ),
     },
     {
         name: "Display Name",

@@ -3,9 +3,7 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    images: {
-        domains: ["cdn.fs.brandfolder.com"],
-    },
+    images: {},
 }
 
 module.exports = nextConfig
