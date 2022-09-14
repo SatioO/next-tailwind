@@ -19,7 +19,10 @@ const ClientPage: NextPageWithLayout<ClientProps> = () => {
             <div className="w-9/12">
                 <div className="p-4">
                     <h1 className="text-xl font-bold">Clients</h1>
-                    <p>A list of clients created under {realm} realm</p>
+                    <p>
+                        A list of clients created under {router.query.realm}{" "}
+                        realm
+                    </p>
                 </div>
                 <Table
                     columns={columns}
