@@ -1,1 +1,2 @@
-export type ClientProps = {}
+export type ClientPageProps = {}
+export type ClientDetailsPageProps = {}

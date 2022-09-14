@@ -8,3 +8,10 @@ export const getClientsByRealm = async (
     const response = await axiosClient.get(`/v1/realm/${realm}/client`)
     return getResult<IClientPayload[]>(response)
 }
+
+export const getClientById = async (
+    clientId: string
+): Promise<IClientPayload> => {
+    const response = await axiosClient.get(`/v1/client/${clientId}`)
+    return getResult<IClientPayload>(response)
+}

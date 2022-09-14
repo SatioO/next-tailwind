@@ -1,18 +1,20 @@
-import { IRealmPayload } from "@api/realm/realm.types"
+import { IClientPayload } from "@api/client/client.types"
 import Layout from "@components/ui/Layout"
 import Table from "@components/ui/Table"
 import useClientsByRealm from "@hooks/client/useClientsByRealm"
 import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
-import { ClientProps } from "./client.types"
+import { ClientPageProps } from "./client.types"
 import { columns } from "./columns"
 
-const ClientPage: NextPageWithLayout<ClientProps> = () => {
+const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
     const router = useRouter()
     const client = useClientsByRealm(router.query.realm as string)
 
-    function onRowClick(row: IRealmPayload) {}
+    function onRowClick(row: IClientPayload) {
+        router.push({ pathname: `client/${row.client_id}` })
+    }
 
     return (
         <div className="flex justify-center">
