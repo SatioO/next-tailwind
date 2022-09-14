@@ -10,10 +10,7 @@ import { columns } from "./columns"
 
 const ClientPage: NextPageWithLayout<ClientProps> = () => {
     const router = useRouter()
-    const {
-        query: { realm },
-    } = router
-    const client = useClientsByRealm(realm as string)
+    const client = useClientsByRealm(router.query.realm as string)
 
     function onRowClick(row: IRealmPayload) {}
 
