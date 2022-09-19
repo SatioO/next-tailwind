@@ -1,7 +1,9 @@
 import { ReactNode } from "react"
 
+export type TableItem = { id: string | number }
+
 export type TableProps<T> = {
-    data: T
+    data: T[]
     columns: TableColumn[]
     progress?: boolean
     progressComponent?: ReactNode
@@ -15,14 +17,3 @@ export type TableColumn = {
 }
 
 export type PaginationProps = {}
-
-interface Employee {
-    id: number
-    name: string
-}
-
-function searchEmployeeBasedOnName(searchString: string, employees: Employee[]):Employee[] {
-    return employees.filter(employee => {
-      employee.name.toLowerCase().indexOf(searchString) > -1;
-    });
-  }

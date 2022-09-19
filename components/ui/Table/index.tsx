@@ -1,6 +1,6 @@
-import { TableProps } from "./table.types"
+import { TableItem, TableProps } from "./table.types"
 
-function Table<T extends any[] | []>({
+function Table<T extends TableItem>({
     data,
     columns,
     progress,
@@ -31,7 +31,7 @@ function Table<T extends any[] | []>({
                                     ? "bg-gray-50 hover:bg-stone-100"
                                     : "bg-white hover:bg-stone-100"
                             }
-                            key={rowIndex}
+                            key={row.id}
                             onClick={() => onRowClick(row)}
                         >
                             {columns.map((column, colIndex) => {
@@ -57,8 +57,8 @@ function Table<T extends any[] | []>({
     )
 }
 
-Table.defaultProps= {
-    onRowClick: () => {}
+Table.defaultProps = {
+    onRowClick: () => {},
 }
 
 export default Table
