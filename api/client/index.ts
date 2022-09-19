@@ -10,8 +10,11 @@ export const getClientsByRealm = async (
 }
 
 export const getClientById = async (
+    realmId: string,
     clientId: string
 ): Promise<IClientPayload> => {
-    const response = await axiosClient.get(`/v1/client/${clientId}`)
+    const response = await axiosClient.get(`/v1/client/${clientId}`, {
+        headers: { realm: realmId },
+    })
     return getResult<IClientPayload>(response)
 }

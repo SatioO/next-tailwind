@@ -10,10 +10,10 @@ import { columns } from "./columns"
 
 const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
     const router = useRouter()
-    const client = useClientsByRealm(router.query.realm as string)
+    const client = useClientsByRealm(router.query.realm_id as string)
 
     function onRowClick(row: IClientPayload) {
-        router.push({ pathname: `client/${row.client_id}` })
+        router.push(`/realm/${router.query.realm_id}/client/${row.client_id}`)
     }
 
     return (
@@ -22,7 +22,7 @@ const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
                 <div className="p-4">
                     <h1 className="text-xl font-bold">Clients</h1>
                     <p>
-                        A list of clients created under {router.query.realm}{" "}
+                        A list of clients created under {router.query.realm_id}{" "}
                         realm
                     </p>
                 </div>

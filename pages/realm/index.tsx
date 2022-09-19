@@ -6,14 +6,14 @@ import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
 import { columns } from "./columns"
-import { DashboardProps } from "./dashboard.types"
+import { RealmProps } from "./realm.types"
 
-const DashboardPage: NextPageWithLayout<DashboardProps> = () => {
+const RealmPage: NextPageWithLayout<RealmProps> = () => {
     const realms = useRealm()
     const router = useRouter()
 
     function onRowClick(row: IRealmPayload) {
-        router.push({ pathname: "/client", query: { realm: row.name } })
+        router.push(`/realm/${row.name}/client`)
     }
 
     return (
@@ -34,8 +34,8 @@ const DashboardPage: NextPageWithLayout<DashboardProps> = () => {
     )
 }
 
-DashboardPage.getLayout = function getLayout(page: ReactElement) {
+RealmPage.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
 }
 
-export default DashboardPage
+export default RealmPage
