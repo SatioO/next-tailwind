@@ -7,8 +7,11 @@ import { ClientDetailsPageProps } from "../client.types"
 
 const ClientDetailsPage: NextPageWithLayout<ClientDetailsPageProps> = () => {
     const router = useRouter()
-    const client = useClient("master", router.query.client_id as string)
-    console.log(client)
+    const client = useClient(
+        router.query.realm_id as string,
+        router.query.client_id as string
+    )
+
     return <></>
 }
 
