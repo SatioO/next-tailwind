@@ -4,8 +4,7 @@ import { IUserInput } from "@components/feature/LoginForm/loginform.types"
 import { GRANT_TYPE, SCOPES } from "@constants/auth.constant"
 import { useAuth } from "@contexts/auth"
 import { environment } from "@lib/environment"
-import { getError, IErrorResponse } from "@lib/errors"
-import { AxiosError, AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 import { useMutation } from "react-query"
 
 const useLoginUser = () => {
@@ -23,9 +22,6 @@ const useLoginUser = () => {
         {
             onSuccess(response: AxiosResponse<ITokenResponse>) {
                 auth.login(response.data.data)
-            },
-            onError(error: AxiosError<IErrorResponse>) {
-                console.log(getError(error))
             },
         }
     )

@@ -2,6 +2,7 @@ import { IClientPayload } from "@api/client/client.types"
 import EditClientForm from "@components/feature/EditClientForm"
 import Layout from "@components/ui/Layout"
 import useClient from "@hooks/client/useClient"
+import useClientEdit from "@hooks/client/useClientEdit"
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
 import { ClientDetailsPageProps } from "../../client.types"
@@ -11,9 +12,14 @@ const ClientDetailsPage: NextPageWithLayout<ClientDetailsPageProps> = ({
     realm_id,
 }) => {
     const client = useClient(realm_id, client_id)
+    const editClient = useClientEdit()
 
     function onEditClient(values: IClientPayload) {
-        console.log({ values })
+        editClient.mutate({
+            clientId: client_id,
+            realmId: realm_id,
+            payload: values,
+        })
     }
 
     return (

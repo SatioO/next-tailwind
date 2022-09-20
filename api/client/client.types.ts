@@ -9,5 +9,12 @@ export interface IClientPayload {
     client_id: string
     realm: string
     public_client: boolean
+    protocol: string
+    standard_flow_enabled: boolean
+    direct_access_grants_enabled: boolean
+    implicit_flow_enabled: boolean
+    service_accounts_enabled: boolean
+    client_authenticator_type: string
+    redirect_uris: string
     enabled: boolean
 }

@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 
 export default function useClientsByRealm(realm: string) {
     return useQuery(
-        ["realms", realm, "clients"],
+        ["realm", realm, "client"],
         () => getClientsByRealm(realm),
         { enabled: !!realm }
     )

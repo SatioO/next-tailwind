@@ -14,7 +14,14 @@ const EditClientForm: React.FC<EditClientFormProps> = ({ data, onSubmit }) => {
             client_id: data.client_id,
             name: data.name,
             description: data.description,
+            client_authenticator_type: data.client_authenticator_type,
             public_client: data.public_client,
+            standard_flow_enabled: data.standard_flow_enabled,
+            direct_access_grants_enabled: data.direct_access_grants_enabled,
+            implicit_flow_enabled: data.implicit_flow_enabled,
+            service_accounts_enabled: data.service_accounts_enabled,
+            redirect_uris: data.redirect_uris,
+            protocol: data.protocol,
             enabled: data.enabled,
         },
         onSubmit,
@@ -63,9 +70,9 @@ const EditClientForm: React.FC<EditClientFormProps> = ({ data, onSubmit }) => {
                     </label>
                     <input
                         type="text"
-                        id="client_id"
+                        id="description"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        placeholder="Enter Client ID"
+                        placeholder="Enter Description"
                         required
                         value={formik.values.description}
                         onChange={formik.handleChange}
