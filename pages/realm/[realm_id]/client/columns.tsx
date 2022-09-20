@@ -6,14 +6,14 @@ export const columns = [
         selector: (row: IClientPayload) => row.id,
     },
     {
-        name: "Name",
+        name: "Client ID",
         selector: (row: IClientPayload) => (
-            <div className="font-medium">{row.name}</div>
+            <div className="font-medium">{row.client_id}</div>
         ),
     },
     {
-        name: "Client ID",
-        selector: (row: IClientPayload) => row.client_id,
+        name: "Description",
+        selector: (row: IClientPayload) => row.description,
     },
     {
         name: "Public Client",

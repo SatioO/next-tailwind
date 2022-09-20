@@ -44,7 +44,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({ data, onSubmit }) => {
                         placeholder="Enter Client ID"
                         required
                         disabled
-                        value={formik.values.client_id}
+                        value={formik.values.id}
                         onChange={formik.handleChange}
                     />
                 </div>
