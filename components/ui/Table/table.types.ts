@@ -14,6 +14,7 @@ export type TableProps<T> = {
 export type TableColumn = {
     name: string
     selector: (row: any) => any
+    width?: string
 }
 
 export type PaginationProps = {}

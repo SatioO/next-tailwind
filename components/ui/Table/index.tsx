@@ -8,7 +8,7 @@ function Table<T extends TableItem>({
 }: TableProps<T>) {
     return (
         <div className="overflow-x-auto rounded-sm bg-white shadow-lg">
-            <table className="table-fixed w-full text-sm text-gray-500">
+            <table className="table-auto text-sm w-full text-gray-700">
                 <thead className="text-slate-800 font-bold bg-white border-b-2">
                     <tr>
                         {columns.map((column) => {
@@ -23,7 +23,7 @@ function Table<T extends TableItem>({
                         })}
                     </tr>
                 </thead>
-                <tbody className="text-sm divide-y divide-gray-100">
+                <tbody className="text-sm divide-y divide-gray-200">
                     {data.map((row, rowIndex) => (
                         <tr
                             className={

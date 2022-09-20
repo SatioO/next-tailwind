@@ -33,4 +33,8 @@ export const columns = [
             <div className="capitalize">{String(row.enabled)}</div>
         ),
     },
+    {
+        name: "Action",
+        selector: () => <div className="font-medium text-sky-600">Edit</div>,
+    },
 ]
