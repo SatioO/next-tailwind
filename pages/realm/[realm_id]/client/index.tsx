@@ -12,7 +12,7 @@ import { columns } from "./columns"
 const ClientPage: NextPageWithLayout<ClientPageProps> = ({ realmId }) => {
     const router = useRouter()
     const queryClient = useQueryClient()
-    const client = useClientsByRealm(realmId as string)
+    const client = useClientsByRealm(realmId)
 
     function onRowClick(row: IClientPayload) {
         queryClient.setQueryData(

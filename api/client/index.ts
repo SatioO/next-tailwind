@@ -1,4 +1,3 @@
-import { EditClientMutation } from "@hooks/client/useClientEdit"
 import { axiosClient } from "@lib/axios"
 import { getResult } from "@lib/response"
 import { IClientPayload } from "./client.types"
@@ -24,7 +23,11 @@ export const editClientById = async ({
     clientId,
     realmId,
     payload: { id, realm, client_id, client_authenticator_type, ...body },
-}: EditClientMutation) => {
+}: {
+    clientId: string
+    realmId: string
+    payload: IClientPayload
+}) => {
     const response = await axiosClient.put(`/v1/client/${clientId}`, body, {
         headers: { realm: realmId },
     })
