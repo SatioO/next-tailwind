@@ -5,6 +5,7 @@ export interface IClientResponse {
 export interface IClientPayload {
     id: string
     name: string
+    description: string
     client_id: string
     realm: string
     public_client: boolean

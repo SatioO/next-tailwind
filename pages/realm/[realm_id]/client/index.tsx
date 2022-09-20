@@ -5,14 +5,20 @@ import useClientsByRealm from "@hooks/client/useClientsByRealm"
 import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
+import { useQueryClient } from "react-query"
 import { ClientPageProps } from "./client.types"
 import { columns } from "./columns"
 
 const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
     const router = useRouter()
+    const queryClient = useQueryClient()
     const client = useClientsByRealm(router.query.realm_id as string)
 
     function onRowClick(row: IClientPayload) {
+        queryClient.setQueryData(
+            ["realm", router.query.realm_id, "client", row.client_id],
+            row
+        )
         router.push(`/realm/${router.query.realm_id}/client/${row.client_id}`)
     }
 
