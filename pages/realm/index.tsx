@@ -1,7 +1,7 @@
 import { IRealmPayload } from "@api/realm/realm.types"
 import Layout from "@components/ui/Layout"
 import Table from "@components/ui/Table"
-import useRealm from "@hooks/realm/useRealm"
+import { useRealm } from "@hooks/realm"
 import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"

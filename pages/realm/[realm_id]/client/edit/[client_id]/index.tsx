@@ -1,23 +1,22 @@
 import { IClientPayload } from "@api/client/client.types"
 import EditClientForm from "@components/feature/EditClientForm"
 import Layout from "@components/ui/Layout"
-import useClient from "@hooks/client/useClient"
-import useClientEdit from "@hooks/client/useClientEdit"
+import { useClient, useClientEdit } from "@hooks/client"
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
 import { ClientDetailsPageProps } from "../../client.types"
 
 const ClientDetailsPage: NextPageWithLayout<ClientDetailsPageProps> = ({
-    client_id,
-    realm_id,
+    clientId,
+    realmId,
 }) => {
-    const client = useClient(realm_id, client_id)
+    const client = useClient(realmId, clientId)
     const editClient = useClientEdit()
 
     function onEditClient(values: IClientPayload) {
         editClient.mutate({
-            clientId: client_id,
-            realmId: realm_id,
+            clientId: clientId,
+            realmId: realmId,
             payload: values,
         })
     }
@@ -45,8 +44,8 @@ ClientDetailsPage.getLayout = function getLayout(page: ReactElement) {
 
 ClientDetailsPage.getInitialProps = ({ query }) => {
     return {
-        realm_id: query.realm_id as string,
-        client_id: query.client_id as string,
+        realmId: query.realm_id as string,
+        clientId: query.client_id as string,
     }
 }
 

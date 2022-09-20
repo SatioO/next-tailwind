@@ -1,7 +1,7 @@
 import { IClientPayload } from "@api/client/client.types"
 import Layout from "@components/ui/Layout"
 import Table from "@components/ui/Table"
-import useClientsByRealm from "@hooks/client/useClientsByRealm"
+import useClientsByRealm from "@hooks/client"
 import { NextPageWithLayout } from "@pages/_app"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
@@ -9,17 +9,17 @@ import { useQueryClient } from "react-query"
 import { ClientPageProps } from "./client.types"
 import { columns } from "./columns"
 
-const ClientPage: NextPageWithLayout<ClientPageProps> = ({ realm_id }) => {
+const ClientPage: NextPageWithLayout<ClientPageProps> = ({ realmId }) => {
     const router = useRouter()
     const queryClient = useQueryClient()
-    const client = useClientsByRealm(realm_id as string)
+    const client = useClientsByRealm(realmId as string)
 
     function onRowClick(row: IClientPayload) {
         queryClient.setQueryData(
-            ["realm", realm_id, "client", row.client_id],
+            ["realm", realmId, "client", row.client_id],
             row
         )
-        router.push(`/realm/${realm_id}/client/edit/${row.client_id}`)
+        router.push(`/realm/${realmId}/client/edit/${row.client_id}`)
     }
 
     return (
@@ -28,7 +28,7 @@ const ClientPage: NextPageWithLayout<ClientPageProps> = ({ realm_id }) => {
                 <div className="p-4">
                     <h1 className="text-xl font-bold">Clients</h1>
                     <p>
-                        A list of clients created under {router.query.realm_id}{" "}
+                        A list of clients created under {router.query.realmId}{" "}
                         realm
                     </p>
                 </div>
@@ -49,7 +49,7 @@ ClientPage.getLayout = (page: ReactElement) => {
 
 ClientPage.getInitialProps = ({ query }) => {
     return {
-        realm_id: query.realm_id as string,
+        realmId: query.realm_id as string,
     }
 }
 

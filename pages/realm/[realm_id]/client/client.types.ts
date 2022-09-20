@@ -1,8 +1,8 @@
 export type ClientPageProps = {
-    realm_id: string
+    realmId: string
 }
 
 export type ClientDetailsPageProps = {
-    realm_id: string
-    client_id: string
+    realmId: string
+    clientId: string
 }
