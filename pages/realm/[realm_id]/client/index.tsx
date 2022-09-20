@@ -9,17 +9,17 @@ import { useQueryClient } from "react-query"
 import { ClientPageProps } from "./client.types"
 import { columns } from "./columns"
 
-const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
+const ClientPage: NextPageWithLayout<ClientPageProps> = ({ realm_id }) => {
     const router = useRouter()
     const queryClient = useQueryClient()
-    const client = useClientsByRealm(router.query.realm_id as string)
+    const client = useClientsByRealm(realm_id as string)
 
     function onRowClick(row: IClientPayload) {
         queryClient.setQueryData(
-            ["realm", router.query.realm_id, "client", row.client_id],
+            ["realm", realm_id, "client", row.client_id],
             row
         )
-        router.push(`/realm/${router.query.realm_id}/client/${row.client_id}`)
+        router.push(`/realm/${realm_id}/client/edit/${row.client_id}`)
     }
 
     return (
@@ -43,8 +43,14 @@ const ClientPage: NextPageWithLayout<ClientPageProps> = () => {
     )
 }
 
-ClientPage.getLayout = function getLayout(page: ReactElement) {
+ClientPage.getLayout = (page: ReactElement) => {
     return <Layout>{page}</Layout>
+}
+
+ClientPage.getInitialProps = ({ query }) => {
+    return {
+        realm_id: query.realm_id as string,
+    }
 }
 
 export default ClientPage

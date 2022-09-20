@@ -1,9 +1,10 @@
+import { IClientPayload } from "@api/client/client.types"
 import EditClientForm from "@components/feature/EditClientForm"
 import Layout from "@components/ui/Layout"
 import useClient from "@hooks/client/useClient"
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
-import { ClientDetailsPageProps } from "../client.types"
+import { ClientDetailsPageProps } from "../../client.types"
 
 const ClientDetailsPage: NextPageWithLayout<ClientDetailsPageProps> = ({
     client_id,
@@ -11,13 +12,22 @@ const ClientDetailsPage: NextPageWithLayout<ClientDetailsPageProps> = ({
 }) => {
     const client = useClient(realm_id, client_id)
 
+    function onEditClient(values: IClientPayload) {
+        console.log({ values })
+    }
+
     return (
         <div className="flex justify-center">
             <div className="w-6/12 space-y-4">
                 <div>
                     <h1 className="text-xl font-bold">Edit Client</h1>
                 </div>
-                {client.isSuccess && <EditClientForm data={client.data} />}
+                {client.isSuccess && (
+                    <EditClientForm
+                        data={client.data}
+                        onSubmit={onEditClient}
+                    />
+                )}
             </div>
         </div>
     )

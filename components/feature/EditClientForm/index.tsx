@@ -3,20 +3,28 @@ import { useFormik } from "formik"
 
 type EditClientFormProps = {
     data: IClientPayload
+    onSubmit: (values: IClientPayload) => void
 }
 
-const EditClientForm: React.FC<EditClientFormProps> = ({ data }) => {
-    const formik = useFormik({
+const EditClientForm: React.FC<EditClientFormProps> = ({ data, onSubmit }) => {
+    const formik = useFormik<IClientPayload>({
         initialValues: {
+            id: data.id,
+            realm: data.realm,
             client_id: data.client_id,
             name: data.name,
             description: data.description,
+            public_client: data.public_client,
+            enabled: data.enabled,
         },
-        onSubmit: () => {},
+        onSubmit,
     })
 
     return (
-        <form className="bg-white flex-1 max-w-5xl p-4 space-y-4 shadow-lg">
+        <form
+            className="bg-white flex-1 max-w-5xl p-4 space-y-4 shadow-lg"
+            onSubmit={formik.handleSubmit}
+        >
             <div className="flex space-x-4">
                 <div className="flex-1">
                     <label className="block mb-2 text-sm font-medium">

@@ -34,7 +34,7 @@ const RealmPage: NextPageWithLayout<RealmProps> = () => {
     )
 }
 
-RealmPage.getLayout = function getLayout(page: ReactElement) {
+RealmPage.getLayout = (page: ReactElement) => {
     return <Layout>{page}</Layout>
 }
 
